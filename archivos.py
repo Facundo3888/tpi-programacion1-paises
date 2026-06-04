@@ -1,0 +1,1 @@
+#Aqui irian las funciones que escriben o leen el csv 
