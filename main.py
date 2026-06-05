@@ -1,4 +1,6 @@
 #Este es el archivo principal de ejecucion.
+#Aqui se deben importar los otros .py
+
 #Funcion de seleccion de menu
 def menu():
     print("╔═════════════════════════════════════════════════╗")
@@ -16,34 +18,45 @@ def menu():
 ¿Que desea hacer?: """)
     return eleccion_menu
 
+#Funcion que llama a las demas para ejecutar el programa
 def main():
         while True:
             match menu():
                 case "1":
-                    pass
+                    print("Accediendo al archivo CSV...")
+                    #lista_paises = archivos.cargar_datos_csv(****)
+                    print("Datos recargados desde el archivo.")
+
 
                 case "2":
+                    #logica_paises.agregar_pais(****)
                     pass
 
                 case "3":
+                    #logica_paises.actualizar_pais(****)
                     pass
 
                 case "4":
+                    #logica_paises.buscar_pais_nombre(****)
                     pass
 
                 case "5":
+                    #logica_paises.filtrar_paises(****)
                     pass
 
                 case "6":
+                    #logica_paises.ordenar_paises(****)
                     pass
 
                 case "7":
+                    #logica_paises.mostrar_estadisticas(****)
                     pass
                 
                 case "8":
-                    pass
+                    print("Guardando cambios en el archivo CSV...")
+                    #archivos.guardar_datos(****)
+                    print("¡Gracias por usar el sistema! Saliendo...")
+                    break
 
                 case _:
                     print("Error: el dato ingresado no corresponde a ninguna opcion del menu.")
-
-main()
