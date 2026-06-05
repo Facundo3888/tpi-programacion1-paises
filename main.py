@@ -1,6 +1,5 @@
 #Este es el archivo principal de ejecucion.
-
-
+#Funcion de seleccion de menu
 def menu():
     print("╔═════════════════════════════════════════════════╗")
     eleccion_menu = input("""║   SISTEMA DE GESTION DE PAISES                  ║
@@ -18,7 +17,33 @@ def menu():
     return eleccion_menu
 
 def main():
-    pass
+        while True:
+            match menu():
+                case "1":
+                    pass
 
+                case "2":
+                    pass
 
-menu()
+                case "3":
+                    pass
+
+                case "4":
+                    pass
+
+                case "5":
+                    pass
+
+                case "6":
+                    pass
+
+                case "7":
+                    pass
+                
+                case "8":
+                    pass
+
+                case _:
+                    print("Error: el dato ingresado no corresponde a ninguna opcion del menu.")
+
+main()
