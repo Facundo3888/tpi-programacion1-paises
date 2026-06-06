@@ -1,6 +1,6 @@
 #Este es el archivo principal de ejecucion.
 #Aqui se deben importar los otros .py 
-from archivos import cargar_datos_csv
+from archivos import cargar_datos_csv, guardar_datos_csv
 
 #Funcion de seleccion de menu
 def menu():
@@ -55,7 +55,7 @@ def main():
                 
                 case "8":
                     print("Guardando cambios en el archivo CSV...")
-                    #archivos.guardar_datos(****)
+                    guardar_datos_csv("paises.csv", lista_paises)
                     print("¡Gracias por usar el sistema! Saliendo...")
                     break
 
