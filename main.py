@@ -1,5 +1,6 @@
 #Este es el archivo principal de ejecucion.
-#Aqui se deben importar los otros .py
+#Aqui se deben importar los otros .py 
+from archivos import cargar_datos_csv
 
 #Funcion de seleccion de menu
 def menu():
@@ -24,7 +25,7 @@ def main():
             match menu():
                 case "1":
                     print("Accediendo al archivo CSV...")
-                    #lista_paises = archivos.cargar_datos_csv(****)
+                    lista_paises = cargar_datos_csv("paises.csv")
                     print("Datos recargados desde el archivo.")
 
 
