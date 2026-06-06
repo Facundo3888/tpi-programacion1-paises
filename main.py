@@ -28,7 +28,6 @@ def main():
                     lista_paises = cargar_datos_csv("paises.csv")
                     print("Datos recargados desde el archivo.")
 
-
                 case "2":
                     #logica_paises.agregar_pais(****)
                     pass
@@ -61,3 +60,7 @@ def main():
 
                 case _:
                     print("Error: el dato ingresado no corresponde a ninguna opcion del menu.")
+
+#Llama a la funcion main para ejecutar el programa
+if __name__ == "__main__":
+    main()
