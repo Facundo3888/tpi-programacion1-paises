@@ -1,43 +1,62 @@
 #Aqui irian las funciones que escriben o leen el csv 
 import csv
+import os
 
-#Esta funcion lee el csv y lo transforma en una lista para ser operada en ram durante la ejecucion
 def cargar_datos_csv(nombre_archivo):
     lista_paises = []
+    
+    #si el archivo no existe, lo inicializamos con el dataset base de la consigna
+    if not os.path.exists(nombre_archivo):
+        with open(nombre_archivo, "w", encoding="utf-8") as archivo:
+            #formato de la consigna (pais,continente,poblacion,pbi)
+            archivo.write("pais,continente,poblacion,pbi\n")
+            archivo.write("Argentina,America,45376763,490000\n")
+            archivo.write("Japon,Asia,125800000,4940000\n")
+            archivo.write("Brasil,America,213993437,1610000\n")
+            archivo.write("Alemania,Europa,83149300,4220000\n")
+            
+    #lectura del archivo
+    with open(nombre_archivo, "r", encoding="utf-8") as archivo:
+        for numero_linea, linea in enumerate(archivo, 1):
+            if numero_linea == 1:  # salta el encabezado
+                continue           
+            linea_limpia = linea.strip()
+            if not linea_limpia:
+                continue  #ignoramos las lineas vacias
 
-    try:
-        with open(nombre_archivo, "r", encoding="utf-8") as archivo:
-            lector = csv.DictReader(archivo)
-
-            #iteramos sobre el diccionario que creo dictreader para pasarlo a una version limpia
-            for fila in lector:
-                pais = {
-                    "nombre": fila["nombre"].strip(),
-                    "poblacion": int(fila["poblacion"]),
-                    "superficie": int(fila["superficie"]),
-                    "continente": fila["continente"].strip()
+            datos = linea_limpia.split(",")
+            if len(datos) < 4:
+                print(f"Error de formato en linea {numero_linea}. Se omitio esta linea.")
+                continue
+                
+            try:
+                #limpiamos los datos de entrada
+                pais = datos[0].strip()
+                continente = datos[1].strip()
+                poblacion = int(datos[2].strip())
+                pbi = int(datos[3].strip())
+                
+                if not pais or not continente:
+                    raise ValueError("El nombre de país o continente no pueden ser campos vacios.")
+                
+                pais_dict = {
+                    "pais": pais,
+                    "continente": continente,
+                    "poblacion": poblacion,
+                    "pbi": pbi
                 }
-                lista_paises.append(pais)
-
-    #En caso de error indicamos segun sea apropiado
-    except FileNotFoundError:
-        print(f"advertencia! no se encontro el archivo {nombre_archivo}. Se inicia con lista vacia.")
-    except ValueError:
-        print("Error: hay datos con formato incorrecto en el CSV (población o superficie no son números).")
-
+                lista_paises.append(pais_dict)
+            except ValueError as e:
+                print(f"Error de conversión en linea {numero_linea}. Se omitio esta linea.")
+                
     return lista_paises
 
-#Esta funcion transforma la lista actualizada durante la ejecucion en un nuevo archivo csv que sobreescribe al anterior
-def guardar_datos_csv(nombre_archivo, lista_paises):
-    try:
-        #Usamos el modo w para que sobreescriba el archivo viejo con la lista actualizada
-        with open(nombre_archivo, "w", encoding="utf-8") as archivo:
-            escritor = csv.DictWriter(archivo, fieldnames=["nombre", "poblacion", "superficie", "continente"])
-            #Esto escribe los encabezados del nuevo csv
-            escritor.writeheader()
-            #Esto transforma cada diccionario de la lista en una linea del csv
-            escritor.writerows(lista_paises)
-            print("Datos guardados correctamente.")
 
-    except Exception as error:
-        print(f"Error al guardar el archivo: {error}")
+def guardar_datos_csv(nombre_archivo, lista_paises):
+
+    with open(nombre_archivo, "w", encoding="utf-8") as archivo:
+        archivo.write("pais,continente,poblacion,pbi\n")
+        for p in lista_paises:
+            linea = f"{p['pais']},{p['continente']},{p['poblacion']},{p['pbi']}\n"
+            archivo.write(linea)
+
