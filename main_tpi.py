@@ -1,7 +1,7 @@
 #Este es el archivo principal de ejecucion.
 #Aqui se deben importar los otros .py 
 
-from archivos_tpi import (
+from logica_paises import (
     cargar_datos_csv, 
     guardar_datos_csv,
     agregar_pais,

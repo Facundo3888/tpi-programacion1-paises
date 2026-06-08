@@ -1,5 +1,4 @@
-nombre,poblacion,superficie,continente
-Argentina,45376763,2780400,América
-Japón,125800000,377975,Asia
-Brasil,213993437,8515767,América
-Alemania,83149300,357022,Europa
+Argentina,America,45376763,490000
+Japon,Asia,125800000,4940000
+Brasil,America,213993437,1610000
+Alemania,Europa,83149300,4220000
