@@ -1,9 +1,11 @@
 #Este es el archivo principal de ejecucion.
 #Aqui se deben importar los otros .py 
-
-from logica_paises import (
+from archivos import (
     cargar_datos_csv, 
     guardar_datos_csv,
+)
+
+from logica_paises import (
     agregar_pais,
     actualizar_pais,
     buscar_pais_nombre,
